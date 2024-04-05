@@ -1,0 +1,11 @@
+
+Log: bean: readFromFile, method: read datetime: Fri Apr 05 18:54:58 NOVT 2024
+Log: bean: checkUserName, method: check datetime: Fri Apr 05 18:54:58 NOVT 2024
+Log: bean: checkUserApp, method: check datetime: Fri Apr 05 18:54:58 NOVT 2024
+Log: bean: checkDateAndLog, method: check datetime: Fri Apr 05 18:54:58 NOVT 2024
+Log: bean: writeToDb, method: write datetime: Fri Apr 05 18:54:58 NOVT 2024
+Log: bean: readFromFile, method: read datetime: Fri Apr 05 18:57:28 NOVT 2024
+Log: bean: checkUserName, method: check datetime: Fri Apr 05 18:57:28 NOVT 2024
+Log: bean: checkUserApp, method: check datetime: Fri Apr 05 18:57:28 NOVT 2024
+Log: bean: checkDateAndLog, method: check datetime: Fri Apr 05 18:57:28 NOVT 2024
+Log: bean: writeToDb, method: write datetime: Fri Apr 05 18:57:28 NOVT 2024
