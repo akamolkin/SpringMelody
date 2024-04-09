@@ -26,8 +26,6 @@ class SpringMelodyApplicationTests {
 	private Integer port;
 
 	public static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15-alpine")
-	//		.withPassword("inmemory")
-	//		.withUsername("inmemory")
 		.withInitScript("script.sql");
 
 	@BeforeAll
@@ -62,7 +60,7 @@ class SpringMelodyApplicationTests {
 	}
 
 	@Test
-	void contextLoads() {
+	void writeToBdTest() {
 		Map<String, List<Object>> mapCheck = new HashMap<>();
 
 		Users users = new Users();
@@ -89,7 +87,17 @@ class SpringMelodyApplicationTests {
 				.get("/api/users")
 				.then()
 				.statusCode(200)
-				.body(".", hasSize(3))
+				.body(".", hasSize(1))
+		;
+
+		RestAssured
+				.given()
+				.contentType(ContentType.JSON)
+				.when()
+				.get("/api/logins")
+				.then()
+				.statusCode(200)
+				.body(".", hasSize(1))
 		;
 	}
 }

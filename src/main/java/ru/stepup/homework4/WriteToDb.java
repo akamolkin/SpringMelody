@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
 
 @Component
-@LogTransformation
+//@LogTransformation
+//@RestController
 public class WriteToDb implements ImporterDataWriter{
     @Autowired
     UsersRepo usersRepo;
@@ -35,7 +37,12 @@ public class WriteToDb implements ImporterDataWriter{
     }
 
     @GetMapping("/api/users")
-    List<Users> getAll() {
+    List<Users> getAllUsers() {
         return usersRepo.findAll();
+    }
+
+    @GetMapping("/api/logins")
+    List<Logins> getAllLogins() {
+        return loginsRepo.findAll();
     }
 }
