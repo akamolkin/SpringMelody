@@ -17,7 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// Тест не задался, не видет schema.sql, наверное надо его как-то привязать
+import static org.hamcrest.Matchers.hasSize;
+
+// Тест не задался, не видет script.sql, наверное надо его как-то привязать
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SpringMelodyApplicationTests {
@@ -25,18 +27,19 @@ class SpringMelodyApplicationTests {
 	@LocalServerPort
 	private Integer port;
 
-	public static PostgreSQLContainer<?> postgres = new PostgreSQLContainer("postgres:15-alpine");
+	public static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15-alpine")
 	//		.withPassword("inmemory")
-	//		.withUsername("inmemory");
+	//		.withUsername("inmemory")
+		.withInitScript("script.sql");
 
 	@BeforeAll
 	static void beforeAll() {
 		postgres.start();
 	}
-	@AfterAll
-	static void afterAll() {
-		postgres.stop();
-	}
+//	@AfterAll
+//	static void afterAll() {
+//		postgres.stop();
+//	}
 
 	@DynamicPropertySource
 	static void postgresqlProperties(DynamicPropertyRegistry registry) {
@@ -80,6 +83,14 @@ class SpringMelodyApplicationTests {
 
 		writeToDb.write(mapCheck);
 
-		// надо посмотреть что есть записи, но таблицы не создаются по schema.sql
+		RestAssured
+				.given()
+				.contentType(ContentType.JSON)
+				.when()
+				.get("/api/users")
+				.then()
+				.statusCode(200)
+				.body(".", hasSize(3))
+		;
 	}
 }
