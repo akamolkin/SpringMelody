@@ -19,8 +19,6 @@ import java.util.Map;
 
 import static org.hamcrest.Matchers.hasSize;
 
-// Тест не задался, не видет script.sql, наверное надо его как-то привязать
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SpringMelodyApplicationTests {
 
@@ -36,10 +34,11 @@ class SpringMelodyApplicationTests {
 	static void beforeAll() {
 		postgres.start();
 	}
-//	@AfterAll
-//	static void afterAll() {
-//		postgres.stop();
-//	}
+
+	@AfterAll
+	static void afterAll() {
+		postgres.stop();
+	}
 
 	@DynamicPropertySource
 	static void postgresqlProperties(DynamicPropertyRegistry registry) {
