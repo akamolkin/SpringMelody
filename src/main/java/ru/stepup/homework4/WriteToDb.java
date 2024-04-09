@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-//@LogTransformation
-//@RestController
+@LogTransformation
+@RestController
 public class WriteToDb implements ImporterDataWriter{
     @Autowired
     UsersRepo usersRepo;
